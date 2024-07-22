@@ -1,8 +1,6 @@
-# Tale Compendium
+# <img src="public/icons/tclogo.png" alt="Tale Compendium Logo" width="50" height="50" /> Tale Compendium
 
 <div align="center">
-  <br />
-  <img src="public/icons/tclogo.png" alt="Tale Compendium Banner">
   <br />
   <div>
     <img src="https://img.shields.io/badge/-Typescript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
