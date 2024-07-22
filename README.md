@@ -1,6 +1,15 @@
-# <img src="public/icons/tclogo.png" alt="Tale Compendium Logo" width="50" height="50" /> Tale Compendium
-
 <div align="center">
+  <table border="0" style="border: none; margin: 0 auto;">
+    <tr>
+      <td style="border: none; padding: 0; vertical-align: middle;">
+        <img src="public/icons/tclogo.png" alt="Tale Compendium Logo" width="150" height="100%" />
+      </td>
+      <td style="border: none; padding: 0;">
+        <h1 style="margin: 0;">Tale Compendium</h1>
+      </td>
+    </tr>
+  </table>
+<hr/>
   <br />
   <div>
     <img src="https://img.shields.io/badge/-Typescript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
