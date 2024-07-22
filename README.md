@@ -1,6 +1,8 @@
-div align="center">
+# Tale Compendium
+
+<div align="center">
   <br />
-  <img src="https://github.com/yourusername/tale_compendium/assets/yourimage" alt="Tale Compendium Banner">
+  <img src="public/icons/tclogo.png" alt="Tale Compendium Banner">
   <br />
   <div>
     <img src="https://img.shields.io/badge/-Typescript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
@@ -14,32 +16,35 @@ div align="center">
     Build and explore intricate D&D worlds, NPCs, and quests with the help of advanced AI. Perfect for Dungeon Masters and D&D enthusiasts.
   </div>
 </div>
-📋 Table of Contents
-🤖 Introduction
-⚙️ Tech Stack
-🔋 Features
-🚀 License
-🤖 Introduction
+
+## 📋 Table of Contents
+1. [🤖 Introduction](#introduction)
+2. [⚙️ Tech Stack](#tech-stack)
+3. [🔋 Features](#features)
+4. [🚀 License](#license)
+
+## 🤖 Introduction
 Tale Compendium is an AI-powered platform designed to assist Dungeon Masters in creating detailed D&D worlds, NPCs, and quests. Leveraging the power of OpenAI, Tale Compendium provides robust tools for world-building, character creation, and quest management to enhance your tabletop RPG experience.
 
-⚙️ Tech Stack
-Next.js
-TypeScript
-Convex
-OpenAI
-Clerk
-ShadCN
-Tailwind CSS
-Stripe
-🔋 Features
-AI-Powered NPC Creation: Generate detailed D&D NPCs with stats, descriptions, and backstories.
-World Building: Create and manage intricate worlds with places and NPCs.
-Quest Management: Design and track quests, including objectives, rewards, and NPC interactions.
-Robust Authentication: Secure and reliable user login and registration system.
-Responsive Design: Fully functional and visually appealing across all devices and screen sizes.
-User Profiles: View and manage all created NPCs, places, and quests in a personalized profile.
-Advanced Search: Easily find NPCs, places, and quests using various search criteria.
-Payment Integration: Use Stripe for managing user subscriptions and payments.
-🚀 License
-This project is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. You may not use this project for commercial purposes, and you may not distribute modified versions of the work. For more details, see the LICENSE file.# TaleCompendium
-# TaleCompendium
+## ⚙️ Tech Stack
+- Next.js
+- TypeScript
+- Convex
+- OpenAI
+- Clerk
+- ShadCN
+- Tailwind CSS
+- Stripe
+
+## 🔋 Features
+- **AI-Powered NPC Creation**: Generate detailed D&D NPCs with stats, descriptions, and backstories.
+- **World Building**: Create and manage intricate worlds with places and NPCs.
+- **Quest Management**: Design and track quests, including objectives, rewards, and NPC interactions.
+- **Robust Authentication**: Secure and reliable user login and registration system.
+- **Responsive Design**: Fully functional and visually appealing across all devices and screen sizes.
+- **User Profiles**: View and manage all created NPCs, places, and quests in a personalized profile.
+- **Advanced Search**: Easily find NPCs, places, and quests using various search criteria.
+- **Payment Integration**: Use Stripe for managing user subscriptions and payments.
+
+## 🚀 License
+This project is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. You may not use this project for commercial purposes, and you may not distribute modified versions of the work. For more details, see the [LICENSE](LICENSE) file.
