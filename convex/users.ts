@@ -1,5 +1,8 @@
 import { ConvexError, v } from "convex/values";
 import { internalMutation, query } from "./_generated/server";
+import stripe from "stripe";
+
+const stripeClient = new stripe(process.env.STRIPE_SECRET_KEY!);
 
 export const getUserById = query({
   args: { clerkId: v.string() },
@@ -17,7 +20,6 @@ export const getUserById = query({
   },
 });
 
-// this query is used to get the top user by NPC creation count.
 export const getTopUserByNPCCreationCount = query({
   args: {},
   handler: async (ctx, args) => {
@@ -60,6 +62,7 @@ export const createUser = internalMutation({
       email: args.email,
       imageUrl: args.imageUrl,
       name: args.name,
+      tokens: 0, // Initialize user with 0 tokens
     });
   },
 });
@@ -113,5 +116,36 @@ export const deleteUser = internalMutation({
     }
 
     await ctx.db.delete(user._id);
+  },
+});
+
+export const createPaymentIntent = internalMutation({
+  args: {
+    amount: v.number(),
+    currency: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const { amount, currency } = args;
+    const paymentIntent = await stripeClient.paymentIntents.create({
+      amount,
+      currency,
+    });
+
+    return { clientSecret: paymentIntent.client_secret };
+  },
+});
+
+export const addTokens = internalMutation({
+  args: {
+    userId: v.id("users"),
+    tokens: v.number(),
+  },
+  handler: async (ctx, args) => {
+    const { userId, tokens } = args;
+    const user = await ctx.db.get(userId);
+    if (!user) throw new ConvexError("User not found");
+
+    const updatedTokens = (user.tokens || 0) + tokens;
+    await ctx.db.patch(userId, { tokens: updatedTokens });
   },
 });
