@@ -247,7 +247,7 @@ const CreateNPC = () => {
       <h1 className="text-20 font-bold text-white-1">Create NPC</h1>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="mt-12 flex w-full flex-col gap-10">
-          <div className="flex gap-10">
+          <div className="flex flex-col lg:flex-row gap-10">
             <div className="flex flex-col items-center gap-5">
               <GenerateThumbnail
                 setImage={setImageUrl}
@@ -258,7 +258,7 @@ const CreateNPC = () => {
               />
             </div>
             <div className="flex flex-col w-full gap-5">
-              <div className="flex gap-5">
+              <div className="flex flex-col md:flex-row gap-5">
                 <FormField
                   control={form.control}
                   name="npcName"

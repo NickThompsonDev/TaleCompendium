@@ -1,20 +1,24 @@
-import { NPCCardProps } from '@/types'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import React from 'react'
+import { NPCCardProps } from '@/types';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import { useMutation } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 
 const NPCCard = ({
   imgUrl, title, description, npcId
 }: NPCCardProps) => {
-  const router = useRouter()
+  const router = useRouter();
+  const updateNPCViews = useMutation(api.npcs.updateNPCViews);
 
-  const handleViews = () => {
+  const handleViews = async () => {
     // increase views
+    await updateNPCViews({ npcId });
 
     router.push(`/npcs/${npcId}`, {
       scroll: true
-    })
-  }
+    });
+  };
 
   return (
     <div className="cursor-pointer" onClick={handleViews}>
@@ -35,4 +39,4 @@ const NPCCard = ({
   )
 }
 
-export default NPCCard
+export default NPCCard;

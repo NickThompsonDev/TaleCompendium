@@ -72,7 +72,7 @@ const NPCDetail = ({
       <div className="flex flex-col flex-grow justify-between md:pl-4 mt-4 md:mt-0">
         <div className="flex justify-between items-start flex-col md:flex-row">
           <div className="mb-4 md:mb-0">
-            <h1 className="text-32 font-extrabold tracking-[-0.32px] text-white-1 max-w-56">
+            <h1 className="text-32 font-extrabold tracking-[-0.32px] text-white-1 max-w-60">
               {npcName}
             </h1>
             <figure
