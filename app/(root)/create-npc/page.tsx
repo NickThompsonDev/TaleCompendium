@@ -86,19 +86,19 @@ const InputArray: React.FC<InputArrayProps> = ({ name, label, placeholderName, p
 
   return (
     <div className="flex flex-col gap-2.5">
-      <FormLabel className="font-bold text-orange-1" htmlFor={name}>{label}</FormLabel>
+      <FormLabel className="font-bold text-white-1" htmlFor={name}>{label}</FormLabel>
       {fields.map((item, index) => (
         <div key={item.id} className="flex gap-2.5 items-center">
           <Controller
             control={control}
             name={`${name}.${index}.name`}
             render={({ field }) => (
-              <FormItem className="flex flex-col gap-2.5 flex-grow  text-white-5">
-                <FormLabel htmlFor={`${name}.${index}.name`}>{placeholderName}</FormLabel>
+              <FormItem className={placeholderValue ? "flex-[0_0_25%] flex flex-col gap-2.5  text-white-1" : "flex-[0_0_81%] flex flex-col gap-2.5  text-white-1"}>
+                {/* <FormLabel htmlFor={`${name}.${index}.name`}>{placeholderName}</FormLabel> */}
                 <FormControl>
                   <Input
                     id={`${name}.${index}.name`}
-                    className="input-class focus-visible:ring-offset-orange-1"
+                    className="bg-black-3 border-black-1 text-white-1 focus-visible:ring-offset-orange-1"
                     placeholder={placeholderName}
                     {...field}
                   />
@@ -112,12 +112,12 @@ const InputArray: React.FC<InputArrayProps> = ({ name, label, placeholderName, p
               control={control}
               name={`${name}.${index}.description`}
               render={({ field }) => (
-                <FormItem className="flex flex-col gap-2.5 flex-grow text-white-5">
-                  <FormLabel htmlFor={`${name}.${index}.description`}>{placeholderValue}</FormLabel>
+                <FormItem className="flex flex-col gap-2.5 flex-[0_0_55%] text-white-5">
+                  {/* <FormLabel htmlFor={`${name}.${index}.description`}>{placeholderValue}</FormLabel> */}
                   <FormControl>
                     <Input
                       id={`${name}.${index}.description`}
-                      className="input-class focus-visible:ring-offset-orange-1"
+                      className="bg-black-3 border-black-1 focus-visible:ring-offset-orange-1"
                       placeholder={placeholderValue}
                       {...field}
                     />
@@ -293,7 +293,7 @@ const CreateNPC = () => {
                   <FormItem className="flex flex-col gap-2.5 w-full">
                     <FormLabel className="text-16 font-bold text-white-1" htmlFor="npcDescription">Description</FormLabel>
                     <FormControl>
-                      <Textarea id="npcDescription" className="input-class focus-visible:ring-offset-orange-1" rows={7} placeholder="Write a short NPC description" {...field} />
+                      <Textarea id="npcDescription" className="input-class focus-visible:ring-offset-orange-1" rows={5} placeholder="Write a short NPC description" {...field} />
                     </FormControl>
                     <FormMessage className="text-white-1" />
                   </FormItem>

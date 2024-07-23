@@ -17,7 +17,7 @@ const LeftSidebar = () => {
   return (
     <section className={cn("left_sidebar h-[calc(100vh-5px)]")}>
       <nav className="flex flex-col gap-6">
-        <Link href="/" className="flex cursor-pointer items-center gap-1 pb-10 max-lg:justify-center">
+        <Link href="/" className="flex cursor-pointer items-center gap-1 -ml-4 pb-10 max-lg:justify-center">
           <Image src="/icons/tclogo.svg" alt="logo" width={60} height={60} />
           <h1 className="text-18 font-extrabold text-white max-lg:hidden">Tale Compendium</h1>
         </Link>
