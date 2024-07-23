@@ -69,7 +69,7 @@ const InputArray: React.FC<InputArrayProps> = ({ name, label, placeholderName, p
                   <FormControl>
                     <Input
                       id={`${name}.${index}.description`}
-                      className="text-white-1 focus-visible:ring-offset-orange-1"
+                      className="input-class focus-visible:ring-offset-orange-1"
                       placeholder={placeholderValue}
                       {...field}
                     />

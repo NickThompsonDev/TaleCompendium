@@ -86,14 +86,14 @@ const InputArray: React.FC<InputArrayProps> = ({ name, label, placeholderName, p
 
   return (
     <div className="flex flex-col gap-2.5">
-      <FormLabel className="text-16 font-bold text-white-1" htmlFor={name}>{label}</FormLabel>
+      <FormLabel className="font-bold text-orange-1" htmlFor={name}>{label}</FormLabel>
       {fields.map((item, index) => (
         <div key={item.id} className="flex gap-2.5 items-center">
           <Controller
             control={control}
             name={`${name}.${index}.name`}
             render={({ field }) => (
-              <FormItem className="flex flex-col gap-2.5 flex-grow">
+              <FormItem className="flex flex-col gap-2.5 flex-grow  text-white-5">
                 <FormLabel htmlFor={`${name}.${index}.name`}>{placeholderName}</FormLabel>
                 <FormControl>
                   <Input
@@ -112,7 +112,7 @@ const InputArray: React.FC<InputArrayProps> = ({ name, label, placeholderName, p
               control={control}
               name={`${name}.${index}.description`}
               render={({ field }) => (
-                <FormItem className="flex flex-col gap-2.5 flex-grow">
+                <FormItem className="flex flex-col gap-2.5 flex-grow text-white-5">
                   <FormLabel htmlFor={`${name}.${index}.description`}>{placeholderValue}</FormLabel>
                   <FormControl>
                     <Input

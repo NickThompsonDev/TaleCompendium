@@ -7,6 +7,9 @@ const stripeClient = new stripe(process.env.STRIPE_SECRET_KEY!);
 export const getUserById = query({
   args: { clerkId: v.string() },
   handler: async (ctx, args) => {
+    if (!args.clerkId) {
+      return null;
+    }
     const user = await ctx.db
       .query("users")
       .filter((q) => q.eq(q.field("clerkId"), args.clerkId))

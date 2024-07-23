@@ -55,7 +55,7 @@ const RightSidebar = () => {
             <span className="ml-1 text-14 font-medium text-orange-1">{tokenAmount}</span>
           </div>
           <div className="flex items-center">
-            <button onClick={openModal} className="invert ml-1">
+            <button onClick={openModal} className="invert ml-5">
               <Image src="/icons/cart.svg" alt="Buy More" width={20} height={20} />
             </button>
           </div>
