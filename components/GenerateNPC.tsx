@@ -2,20 +2,24 @@ import { GenerateNPCProps } from '@/types';
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Loader } from 'lucide-react';
-import { useAction } from 'convex/react';
+import { useAction, useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useToast } from "@/components/ui/use-toast";
 import { useFormContext } from 'react-hook-form';
 import { NPCProps } from '@/types';
+import Image from 'next/image';
+import { useUser } from '@clerk/nextjs';
 
 const useGenerateNPC = ({
   setNPCDetails,
   formData,
-}: GenerateNPCProps & { formData: any }) => {
+}: GenerateNPCProps & { formData: any}) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const { toast } = useToast();
+  const { user } = useUser();
 
   const getNPCDetails = useAction(api.openai.generateNPCDetails);
+  const consumeTokens = useMutation(api.users.consumeTokens);
 
   const generateNPC = async () => {
     setIsGenerating(true);
@@ -29,6 +33,8 @@ const useGenerateNPC = ({
     }
 
     try {
+      if (!user) throw new Error('User not authenticated');
+      await consumeTokens({ clerkId: user.id, tokens: 1 });
       const response = await getNPCDetails({
         input: JSON.stringify(formData),
       });
@@ -51,7 +57,7 @@ const useGenerateNPC = ({
   return { isGenerating, generateNPC };
 };
 
-const GenerateNPC = (props: GenerateNPCProps & { formData: any }) => {
+const GenerateNPC = (props: GenerateNPCProps & { formData: any}) => {
   const { isGenerating, generateNPC } = useGenerateNPC(props);
   const { setValue } = useFormContext<NPCProps>();
   const [showDetails, setShowDetails] = useState(false);
@@ -75,7 +81,11 @@ const GenerateNPC = (props: GenerateNPCProps & { formData: any }) => {
               <Loader size={20} className="animate-spin ml-2" />
             </>
           ) : (
-            'Generate NPC Details'
+            <>
+              Generate NPC Details
+              <Image src="/icons/token.svg" alt={"Token"} width={20} height={20} className={"ml-2"} />
+              1
+            </>
           )}
         </Button>
         {props.npcDetails && (

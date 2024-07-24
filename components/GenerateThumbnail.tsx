@@ -12,16 +12,22 @@ import { useAction, useMutation } from 'convex/react';
 import { useUploadFiles } from '@xixixao/uploadstuff/react';
 import { api } from '@/convex/_generated/api';
 import { v4 as uuidv4 } from 'uuid';
+import { useUser } from '@clerk/clerk-react';
+
+
 
 const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, setImagePrompt }: GenerateThumbnailProps) => {
   const [isAiThumbnail, setIsAiThumbnail] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const imageRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+  const { user } = useUser();
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
   const { startUpload } = useUploadFiles(generateUploadUrl);
   const getImageUrl = useMutation(api.npcs.getUrl);
   const handleGenerateThumbnail = useAction(api.openai.generateThumbnailAction);
+  const consumeTokens = useMutation(api.users.consumeTokens);
+
 
   const handleImage = async (blob: Blob, fileName: string) => {
     try {
@@ -48,6 +54,8 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
   const generateImage = async () => {
     setIsImageLoading(true);
     try {
+      if (!user) throw new Error('User not authenticated');
+      await consumeTokens({ clerkId: user.id, tokens: 2 });
       const response = await handleGenerateThumbnail({ prompt: imagePrompt });
       const blob = new Blob([response], { type: 'image/png' });
       await handleImage(blob, `thumbnail-${uuidv4()}`);
@@ -94,7 +102,11 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
                   <Loader size={20} className="animate-spin ml-2" />
                 </>
               ) : (
-                'Generate'
+                <>
+                  Generate
+                  <Image src="/icons/token.svg" alt={"Token"} width={20} height={20} className={"ml-2"} />
+                  2
+                </>
               )}
             </Button>
           </div>

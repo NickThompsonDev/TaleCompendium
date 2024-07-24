@@ -1,5 +1,5 @@
 import { ConvexError, v } from "convex/values";
-import { internalMutation, query } from "./_generated/server";
+import { internalMutation, mutation, query } from "./_generated/server";
 import stripe from "stripe";
 
 const stripeClient = new stripe(process.env.STRIPE_SECRET_KEY!);
@@ -18,6 +18,8 @@ export const getUserById = query({
     if (!user) {
       throw new ConvexError("User not found");
     }
+
+    user.tokens = user.tokens || 0;
 
     return user;
   },
@@ -65,7 +67,7 @@ export const createUser = internalMutation({
       email: args.email,
       imageUrl: args.imageUrl,
       name: args.name,
-      tokens: 0, // Initialize user with 0 tokens
+      tokens: 30,
     });
   },
 });
@@ -150,5 +152,26 @@ export const addTokens = internalMutation({
 
     const updatedTokens = (user.tokens || 0) + tokens;
     await ctx.db.patch(userId, { tokens: updatedTokens });
+  },
+});
+
+export const consumeTokens = mutation({
+  args: {
+    clerkId: v.string(),
+    tokens: v.number(),
+  },
+  handler: async (ctx, args) => {
+    const { clerkId, tokens } = args;
+    const user = await ctx.db.query("users").filter((q) => q.eq(q.field("clerkId"), clerkId)).unique();
+
+    if (!user) {
+      throw new ConvexError("User not found");
+    }
+
+    if (user.tokens < tokens) {
+      throw new ConvexError("Insufficient tokens");
+    }
+
+    await ctx.db.patch(user._id, { tokens: user.tokens - tokens });
   },
 });

@@ -38,6 +38,6 @@ export default defineSchema({
     imageUrl: v.string(),
     clerkId: v.string(),
     name: v.string(),
-    tokens: v.optional(v.float64()), // Make tokens optional
+    tokens: v.float64(),
   })
 });
