@@ -140,18 +140,22 @@ export const createPaymentIntent = internalMutation({
   },
 });
 
-export const addTokens = internalMutation({
+export const addTokens = mutation({
   args: {
-    userId: v.id("users"),
+    clerkId: v.string(),
     tokens: v.number(),
   },
   handler: async (ctx, args) => {
-    const { userId, tokens } = args;
-    const user = await ctx.db.get(userId);
+    const { clerkId, tokens } = args;
+    const user = await ctx.db
+      .query("users")
+      .filter((q) => q.eq(q.field("clerkId"), clerkId))
+      .unique();
+
     if (!user) throw new ConvexError("User not found");
 
     const updatedTokens = (user.tokens || 0) + tokens;
-    await ctx.db.patch(userId, { tokens: updatedTokens });
+    await ctx.db.patch(user._id, { tokens: updatedTokens });
   },
 });
 

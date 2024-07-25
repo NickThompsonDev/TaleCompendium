@@ -14,11 +14,11 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as actions_stripeActions from "../actions/stripeActions.js";
 import type * as files from "../files.js";
 import type * as http from "../http.js";
 import type * as npcs from "../npcs.js";
 import type * as openai from "../openai.js";
-import type * as stripe from "../stripe.js";
 import type * as users from "../users.js";
 
 /**
@@ -30,11 +30,11 @@ import type * as users from "../users.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  "actions/stripeActions": typeof actions_stripeActions;
   files: typeof files;
   http: typeof http;
   npcs: typeof npcs;
   openai: typeof openai;
-  stripe: typeof stripe;
   users: typeof users;
 }>;
 export declare const api: FilterApi<

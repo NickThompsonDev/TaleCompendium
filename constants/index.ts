@@ -42,3 +42,10 @@ export const voiceDetails = [
     name: "shimmer",
   },
 ];
+
+export const tokenAmounts = [
+  { amount: 40, price: 1 },
+  { amount: 220, price: 5 },
+  { amount: 450, price: 10 },
+  { amount: 920, price: 20 },
+];

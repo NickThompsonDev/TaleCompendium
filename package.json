@@ -20,6 +20,7 @@
     "@stripe/react-stripe-js": "^2.7.3",
     "@stripe/stripe-js": "^4.1.0",
     "@xixixao/uploadstuff": "^0.0.5",
+    "anchor-pki": "^0.3.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "convex": "^1.13.0",
