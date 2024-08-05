@@ -14,8 +14,6 @@ import { api } from '@/convex/_generated/api';
 import { v4 as uuidv4 } from 'uuid';
 import { useUser } from '@clerk/clerk-react';
 
-
-
 const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, setImagePrompt }: GenerateThumbnailProps) => {
   const [isAiThumbnail, setIsAiThumbnail] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(false);
@@ -27,7 +25,6 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
   const getImageUrl = useMutation(api.npcs.getUrl);
   const handleGenerateThumbnail = useAction(api.openai.generateThumbnailAction);
   const consumeTokens = useMutation(api.users.consumeTokens);
-
 
   const handleImage = async (blob: Blob, fileName: string) => {
     try {
@@ -95,7 +92,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
             onChange={(e) => setImagePrompt(e.target.value)}
           />
           <div className="w-full">
-            <Button type="submit" className="text-16 bg-orange-1 py-4 font-bold text-white-1 w-full" onClick={generateImage}>
+            <Button type="button" className="text-16 bg-orange-1 py-4 font-bold text-white-1 w-full" onClick={generateImage}>
               {isImageLoading ? (
                 <>
                   Generating

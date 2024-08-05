@@ -21,7 +21,7 @@ const useGenerateNPC = ({
   const getNPCDetails = useAction(api.openai.generateNPCDetails);
   const consumeTokens = useMutation(api.users.consumeTokens);
 
-  const generateNPC = async () => {
+  const generateNPC = async (p0: { formData: NPCProps; setNPCDetails: React.Dispatch<React.SetStateAction<NPCProps | null>>; npcDetails: NPCProps | null; inputPrompt: string; setInputPrompt: React.Dispatch<React.SetStateAction<string>>; }) => {
     setIsGenerating(true);
     setNPCDetails(null);
 
@@ -59,7 +59,7 @@ const useGenerateNPC = ({
 
 const GenerateNPC = (props: GenerateNPCProps & { formData: any}) => {
   const { isGenerating, generateNPC } = useGenerateNPC(props);
-  const { setValue } = useFormContext<NPCProps>();
+  const { setValue, getValues } = useFormContext<NPCProps>();
   const [showDetails, setShowDetails] = useState(false);
 
   // Populate form fields with generated NPC details
@@ -71,10 +71,15 @@ const GenerateNPC = (props: GenerateNPCProps & { formData: any}) => {
     }
   }, [props.npcDetails, setValue]);
 
+  const handleGenerateNPC = () => {
+    const currentFormValues = getValues();
+    generateNPC({ ...props, formData: currentFormValues });
+  };
+
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-2">
-        <Button type="button" className="text-16 bg-orange-1 py-4 font-bold text-white-1" onClick={generateNPC}>
+        <Button type="button" className="text-16 bg-orange-1 py-4 font-bold text-white-1" onClick={handleGenerateNPC}>
           {isGenerating ? (
             <>
               Generating

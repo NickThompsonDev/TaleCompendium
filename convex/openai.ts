@@ -91,7 +91,7 @@ export const generateNPCDetails = action({
               ]
             }
 
-            The 'npcDescription' field should be replaced with a new description composing of a 1 sentence title, and 2 to 4 paragraph background based on the input provided by the user.
+            The 'npcDescription' field should be replaced with a new description composing of a 1 sentence title, and at least 4 paragraph background based on the input provided by the user.
           `,
         },
         { role: "user", content: input },
