@@ -1,0 +1,25 @@
+{
+    "rewrites": [
+      {
+        "source": "/(.*)", 
+        "destination": "https://34.73.181.123/$1", // Replace with your LoadBalancer IP
+        "has": [
+          {
+            "type": "host",
+            "value": "cloud.talecompendium.com"
+          }
+        ]
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/$1",
+        "has": [
+          {
+            "type": "host",
+            "value": "talecompendium.com"
+          }
+        ]
+      }
+    ]
+  }
+  
